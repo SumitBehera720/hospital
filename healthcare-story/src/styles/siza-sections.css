@@ -345,47 +345,6 @@
   z-index: 2;
 }
 
-/* Mobile & Tablet WhatsApp Quick Button */
-.siza-nav-whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background-color: #25D366;
-  color: #ffffff;
-  padding: 0.55rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.siza-nav-whatsapp-btn:hover {
-  background-color: #20BA59;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.45);
-  color: #ffffff;
-}
-
-.siza-nav-whatsapp-btn:active {
-  transform: scale(0.97);
-}
-
-@media (max-width: 480px) {
-  .siza-nav-whatsapp-btn {
-    padding: 0;
-    width: 2.65rem;
-    height: 2.65rem;
-    justify-content: center;
-    border-radius: 8px;
-  }
-  .siza-nav-whatsapp-btn__text {
-    display: none;
-  }
-}
 
 .siza-nav-quickcall {
   display: none;
