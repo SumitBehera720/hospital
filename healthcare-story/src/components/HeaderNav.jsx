@@ -100,15 +100,19 @@ export default function HeaderNav({ onOpenCallBack }) {
               <span>Call Back</span>
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile 3-Line Hamburger Menu Toggle */}
             <button
               type="button"
-              className="siza-mobile-toggle"
+              className={`siza-mobile-toggle ${mobileMenuOpen ? 'siza-mobile-toggle--active' : ''}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              <span className="siza-hamburger-box">
+                <span className="siza-hamburger-line siza-hamburger-line--1" />
+                <span className="siza-hamburger-line siza-hamburger-line--2" />
+                <span className="siza-hamburger-line siza-hamburger-line--3" />
+              </span>
             </button>
           </div>
         </div>
