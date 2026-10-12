@@ -45,13 +45,48 @@ export default function HealthcareStorySection({ config: overrides, afterId = 'a
         <div className="story-shade" aria-hidden="true" />
 
         <div className="story-ui">
+          {/* Top trust pill */}
+          <div className="story-hero-badge">
+            <span className="story-hero-badge__dot" aria-hidden="true"></span>
+            <span>24/7 Home Healthcare across India · 30-Min Rapid Dispatch · NMC Licensed Doctors</span>
+          </div>
+
           <StoryChapterIndicator chapters={chapters} index={chapterIndex} />
+
+          {/* Quick clinical stats pill */}
+          <div className="story-hero-stats">
+            <div className="story-stat-item">
+              <strong>30-45 Min</strong>
+              <span>Bedside Arrival</span>
+            </div>
+            <div className="story-stat-divider" aria-hidden="true" />
+            <div className="story-stat-item">
+              <strong>15,000+</strong>
+              <span>Patients Treated</span>
+            </div>
+            <div className="story-stat-divider" aria-hidden="true" />
+            <div className="story-stat-item">
+              <strong>100%</strong>
+              <span>Verified Doctors</span>
+            </div>
+          </div>
 
           <div className="story-ui__bottom">
             <p className="story-hint" data-hidden={started}>
-              Scroll to explore the story
+              Scroll down to explore the journey or book care immediately
             </p>
             <div className="story-actions">
+              <a 
+                className="story-button story-button--emergency" 
+                href="https://wa.me/919876543210?text=Hi%20Heltcare%2C%20I%20need%20a%20doctor%20at%20home"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book Doctor via WhatsApp
+              </a>
+              <a className="story-button story-button--primary" href="#contact-form">
+                Request Call Back
+              </a>
               <button
                 type="button"
                 className="story-button"
@@ -62,8 +97,8 @@ export default function HealthcareStorySection({ config: overrides, afterId = 'a
               >
                 Back to start
               </button>
-              <a className="story-button story-button--primary" href={`#${afterId}`}>
-                Skip story
+              <a className="story-button story-button--outline" href={`#${afterId}`}>
+                Explore Services ↓
               </a>
             </div>
           </div>

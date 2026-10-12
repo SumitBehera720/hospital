@@ -171,11 +171,8 @@
 }
 
 @media (max-width: 768px) {
-  .siza-topbar__links {
-    gap: 0.85rem;
-  }
-  .siza-topbar__socials {
-    display: none;
+  .siza-topbar {
+    display: none !important;
   }
 }
 

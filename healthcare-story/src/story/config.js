@@ -39,10 +39,10 @@ export const STORY_CONFIG = {
   },
 
   chapters: [
-    { id: 'exterior', title: 'The hospital', caption: 'Morning light on glass, and the main entrance ahead.', start: 0 },
-    { id: 'arrival', title: 'Arrival', caption: 'A patient walks in. The doors open.', start: 0.2 },
-    { id: 'diagnosis', title: 'Diagnosis', caption: 'A doctor listens, examines, and explains what comes next.', start: 0.4 },
-    { id: 'treatment', title: 'Treatment', caption: 'A coordinated team provides care.', start: 0.6 },
-    { id: 'recovery', title: 'Recovery', caption: 'Stronger, calmer, and walking out into the light.', start: 0.8 },
+    { id: 'exterior', title: 'Hospital-Grade Medical Care', caption: 'Bringing world-class physicians, ICU nurses, and clinical precision straight to your doorstep across India.', start: 0 },
+    { id: 'arrival', title: 'Rapid 30-Minute Dispatch', caption: 'A verified NMC-registered physician arrives at your home, hotel, or office with emergency diagnostic equipment.', start: 0.2 },
+    { id: 'diagnosis', title: 'Precise Bedside Diagnosis', caption: 'Comprehensive vitals examination, blood work, ECG screening, and instant verified digital prescriptions.', start: 0.4 },
+    { id: 'treatment', title: 'Advanced At-Home Treatment', caption: 'Targeted IV drip therapy, sterile wound dressing, acute symptom relief, and continuous nursing supervision.', start: 0.6 },
+    { id: 'recovery', title: 'Comfortable Recovery at Home', caption: 'Heal faster with family by your side — zero traffic stress, zero waiting rooms, and scheduled 24-hour follow-up.', start: 0.8 },
   ],
 };
