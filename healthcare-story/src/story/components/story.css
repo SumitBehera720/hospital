@@ -1,0 +1,317 @@
+/* ---------- tokens ---------- */
+.story {
+  --story-ink: #0a1a1d;
+  --story-mist: #e8f0ee;
+  --story-muted: #b4c8c4;
+  --story-amber: #f0b465;
+  --story-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --story-sans: 'Avenir Next', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+
+  position: relative;
+  /* One pinned screen plus the scroll distance that represents the whole film. */
+  height: calc(100vh + var(--story-length, 600) * 1vh);
+  height: calc(100svh + var(--story-length, 600) * 1svh);
+  background: var(--story-ink);
+  color: var(--story-mist);
+  font-family: var(--story-sans);
+}
+
+.story-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- video ---------- */
+.story-video {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--story-ink);
+}
+.story-video__el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.story-video__el[data-ready='true'] {
+  opacity: 1;
+}
+
+/* Keeps text legible without covering the middle of the frame. */
+.story-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(10, 26, 29, 0.82) 0%, rgba(10, 26, 29, 0.35) 28%, transparent 52%),
+    linear-gradient(to bottom, rgba(10, 26, 29, 0.45) 0%, transparent 18%);
+}
+
+/* ---------- status ---------- */
+.story-status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  text-align: center;
+  max-width: min(34rem, 88vw);
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  background: rgba(10, 26, 29, 0.72);
+  border-radius: 6px;
+}
+.story-status--error {
+  border-left: 3px solid var(--story-amber);
+  text-align: left;
+  justify-items: start;
+}
+.story-status code,
+.story-placeholder code {
+  font-size: 0.9em;
+  color: var(--story-amber);
+}
+.story-status__bar {
+  width: 9rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--story-amber), transparent);
+  background-size: 200% 100%;
+  animation: story-load 1.2s linear infinite;
+}
+@keyframes story-load {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.story-placeholder {
+  position: absolute;
+  top: 4.25rem;
+  right: clamp(1rem, 4vw, 3rem);
+  margin: 0;
+  max-width: 18rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: right;
+  background: rgba(10, 26, 29, 0.7);
+  border-radius: 4px;
+}
+
+/* ---------- interface ---------- */
+.story-ui {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(1rem, 4vw, 3rem) max(1.25rem, env(safe-area-inset-bottom));
+  pointer-events: none; /* the middle of the frame stays clear; controls opt back in */
+}
+.story-ui__bottom {
+  display: grid;
+  gap: 1rem;
+  pointer-events: none;
+}
+.story-ui button,
+.story-ui a,
+.story-ui input {
+  pointer-events: auto;
+}
+
+.story-chapter {
+  margin-bottom: 1.25rem;
+  max-width: 34rem;
+}
+.story-chapter__count {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  color: var(--story-muted);
+}
+.story-chapter__text {
+  animation: story-text-in 360ms ease both;
+}
+@keyframes story-text-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.story-chapter__title {
+  margin: 0;
+  font-family: var(--story-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.35);
+}
+.story-chapter__caption {
+  margin: 0.6rem 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.5;
+  color: var(--story-mist);
+  max-width: 30rem;
+}
+
+.story-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--story-muted);
+  transition: opacity 500ms ease;
+}
+.story-hint[data-hidden='true'] {
+  opacity: 0;
+}
+
+/* ---------- progress ---------- */
+.story-progress {
+  --p: 0;
+  position: relative;
+  height: 28px;
+}
+.story-progress__track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: rgba(232, 240, 238, 0.28);
+}
+.story-progress__fill {
+  display: block;
+  height: 100%;
+  background: var(--story-amber);
+  transform-origin: left center;
+  transform: scaleX(var(--p));
+}
+.story-progress__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+.story-progress:has(.story-progress__input:focus-visible) {
+  outline: 2px solid var(--story-amber);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.story-progress__tick {
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+.story-progress__tick::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--story-mist);
+  opacity: 0.65;
+  transition: transform 160ms ease, opacity 160ms ease, background 160ms ease;
+}
+.story-progress__tick:hover::after,
+.story-progress__tick[data-active='true']::after {
+  opacity: 1;
+  transform: scale(1.4);
+  background: var(--story-amber);
+}
+.story-progress__tick:focus-visible {
+  outline: 2px solid var(--story-amber);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* ---------- actions ---------- */
+.story-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.story-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--story-mist);
+  text-decoration: none;
+  background: rgba(10, 26, 29, 0.55);
+  border: 1px solid rgba(232, 240, 238, 0.4);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.story-button:hover {
+  border-color: var(--story-mist);
+}
+.story-button--primary {
+  color: var(--story-ink);
+  background: var(--story-mist);
+  border-color: var(--story-mist);
+}
+.story-button:focus-visible {
+  outline: 2px solid var(--story-amber);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .story-placeholder { top: 3.75rem; max-width: 13rem; }
+  .story-actions { gap: 0.5rem; }
+  .story-button {
+    min-height: 40px;
+    padding: 0 0.9rem;
+    font-size: 0.85rem;
+  }
+  .story-chapter__title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+  .story-chapter__caption {
+    font-size: 0.925rem;
+  }
+  .story-ui {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-chapter__text,
+  .story-status__bar { animation: none; }
+  .story-video__el,
+  .story-hint,
+  .story-progress__tick::after { transition: none; }
+}
